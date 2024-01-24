@@ -1,21 +1,40 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
 // API for server/API communictation
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+// Material Design
+import { MatInputModule } from '@angular/material/input'
+import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { FormsModule } from '@angular/forms'
+import { MatFormFieldModule } from '@angular/material/form-field';
+// myFLixComponents
+import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from './user-login-form/user-login-form.component'
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, UserRegistrationFormComponent, UserLoginFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

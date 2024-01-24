@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+font-size: 16px;
+}
+// Set all headings to sans
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2rem;
+
+}
+
+// Set all other text elements to serif
+p, span, a, li {
+    font-family: 'IBM Plex Serif', serif;
+}
+.main-page {
+    padding: 1rem;
+}
