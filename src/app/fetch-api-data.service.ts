@@ -120,16 +120,23 @@ export class myFlixService {
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError))
   }
+
+  //         `https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie._id}`,
+
   // get UserFavoriteMovie
   getUserFavoriteMovie(userID: string, movieTitle: string): Observable<any> {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     return this.http
       .get(apiUrl + 'users/' + userID + 'favorites' + movieTitle, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token
         })
       })
-      .pipe(map(this.extractResponseData), catchError(this.handleError))
+      .pipe(
+        map(this.extractResponseData),
+        map((data: any) => data.FavoriteMovies),
+        catchError(this.handleError)
+      );
   }
   // update UserFavoriteMovie
   updateUserFavoriteMovie(userID: string, movieTitle: string): Observable<any> {
