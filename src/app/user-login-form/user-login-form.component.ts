@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog'
 // fetch api calls
 import { myFlixService } from '../fetch-api-data.service'
 // snackbar for display notifications
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar'
 
 import { Router } from '@angular/router'
 
@@ -18,23 +18,32 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: myFlixService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar,
+    public snackBar: MatSnackBar, 
     private router: Router
   ) {}
   ngOnInit(): void {}
   // this sends form inputs to the backend
   loginUser(): void {
-    this.fetchApiData.userLogin(this.userData).subscribe((result: any) => {
-      localStorage.setItem('user', JSON.stringify(result.user))
-      localStorage.setItem('token', result.token)
+    this.fetchApiData.userLogin(this.userData).subscribe(
+      (result: any) => {
+        localStorage.setItem('user', JSON.stringify(result.user))
+        localStorage.setItem('token', result.token)
 
-      // here will be the logic for a successful user registration
+        // here will be the logic for a successful user registration
 
-      this.dialogRef.close() // this will close the modal on success
-      this.snackBar.open('Welcome to myFlix', 'OK', {
-        duration: 2000,
-      })
-      this.router.navigate(['movies'])
-    })
+        this.dialogRef.close() // this will close the modal on success
+        this.snackBar.open('Welcome to myFlix', 'OK', {
+          duration: 2000
+        })
+        this.router.navigate(['movies'])
+      },
+      (error: any) => {
+        console.log('anmeldung fehlgeschlagen')
+        this.dialogRef.close()
+        this.snackBar.open('Login failed!', 'CLOSE', {
+          duration: 2000
+        })
+      }
+    )
   }
 }
