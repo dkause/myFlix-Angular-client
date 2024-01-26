@@ -1,0 +1,38 @@
+<mat-grid-list [cols]="cols" gutterSize="2rem" rowHeight="2:1">
+  <mat-grid-tile id="formHolder">
+    <mat-grid-tile-header>UserData</mat-grid-tile-header>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput [placeholder]="Username" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Edit your userName</mat-hint>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>key</mat-icon>
+        <mat-hint>Edit your Password</mat-hint>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint>Edit your Email</mat-hint>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Birthdate</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>cake</mat-icon>
+        <mat-hint>Edit your Birthdate</mat-hint>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-grid-tile-header>FavoriteMovies</mat-grid-tile-header>
+    <div>FavoriteMovieslist</div>
+  </mat-grid-tile>
+</mat-grid-list>

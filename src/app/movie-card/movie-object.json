@@ -1,0 +1,18 @@
+{
+    "Genre": {
+        "Name": "Thriller",
+        "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience"
+    },
+    "Director": {
+        "Name": "Jonathan Demme",
+        "Bio": " Robert Jonathan Demme was an American director, producer, and screenwriter.",
+        "Birth": "1944",
+        "Death": "2017"
+    },
+    "Actors": [],
+    "_id": "64a6c874478d0280daa6be45",
+    "Title": "Silence of the Lambs",
+    "Description": "To catch a serial killer, a yound FBI cadet seeks the help of an incarcerated and manipulative cannibal killer.",
+    "ImagePath": "https://placehold.co/600x400",
+    "Featured": true
+}

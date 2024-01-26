@@ -38,10 +38,9 @@ export class UserLoginFormComponent implements OnInit {
         this.router.navigate(['movies'])
       },
       (error: any) => {
-        console.log('anmeldung fehlgeschlagen')
         this.dialogRef.close()
         this.snackBar.open('Login failed!', 'CLOSE', {
-          duration: 2000
+          // duration: 3500
         })
       }
     )
