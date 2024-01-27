@@ -1,38 +1,42 @@
-<div style="display: flex">
-  <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto">
-    <mat-card-header>
-      <mat-card-title
-        ><h2>
+<mat-grid-list [cols]="cols" gutterSize="2rem" rowHeight="650">
+  <mat-grid-tile *ngFor="let movie of movies">
+    <mat-card class="mat-card">
+      <mat-card-title class="cst-mat-card-title">
+        <h2>
           {{ movie.Title }}
-        </h2>
-      </mat-card-title>
-      <mat-card-subtitle
-        >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
+        </h2></mat-card-title
       >
-    </mat-card-header>
-
-    <img src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="openGenre(movie.Genre)"
-      >
-        Genre: {{ movie.Genre.Name }}
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="openDirector(movie.Director)"
-      >
-        Director
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="openMovieDetails(movie.Description)"
-      >Description</button>
-      <mat-icon>favorite_border</mat-icon>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      <mat-card-subtitle>
+          <button color="accent" (click)="openMovieDetails(movie.Description)">
+            View Description
+          </button>
+          <mat-divider class="divider"></mat-divider>
+          Director:
+          <button color="accent" (click)="openDirector(movie.Director)">
+            {{ movie.Director.Name }}
+          </button>
+          Genre:
+          <button color="accent" (click)="openGenre(movie.Genre)">
+            {{ movie.Genre.Name }}
+          </button>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <img
+          mat-card-image
+          src="{{ movie.ImagePath }}"
+          width="100%"
+          alt="{{ movie.Title }}"
+      /></mat-card-content>
+      <mat-card-actions style="text-align: center">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="addFavorite(movie.Description)"
+        >
+          Add Favorite
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

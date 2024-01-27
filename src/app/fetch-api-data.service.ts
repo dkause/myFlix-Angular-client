@@ -36,7 +36,7 @@ export class myFlixService {
   public userLogin(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token')
 
-    console.log(userDetails)
+    console.log('userLogin',userDetails)
     return this.http
       .post(apiUrl + 'login', userDetails)
 

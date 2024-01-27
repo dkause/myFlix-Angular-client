@@ -18,7 +18,7 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: myFlixService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar, 
+    public snackBar: MatSnackBar,
     private router: Router
   ) {}
   ngOnInit(): void {}
@@ -38,7 +38,6 @@ export class UserLoginFormComponent implements OnInit {
         this.router.navigate(['movies'])
       },
       (error: any) => {
-        this.dialogRef.close()
         this.snackBar.open('Login failed!', 'CLOSE', {
           // duration: 3500
         })
