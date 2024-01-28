@@ -28,10 +28,10 @@ import { GenreModalComponent } from './genre-modal/genre-modal.component'
 import { DirectorModalComponent } from './director-modal/director-modal.component'
 import { MovieDetailModalComponent } from './movie-detail-modal/movie-detail-modal.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
+import { NavigationComponent } from './navigation/navigation.component'
 
 // Defining the routes
 const appRoutes: Routes = [

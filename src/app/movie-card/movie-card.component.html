@@ -2,8 +2,10 @@
   <mat-grid-tile *ngFor="let movie of movies">
     <mat-card class="mat-card">
       <mat-card-title class="cst-mat-card-title">
-        <h2>
+        <h2 >
           {{ movie.Title }}
+        <!-- <h2 [style.font-size]="getHeadingSize()">
+          {{ movie.Title }} -->
         </h2></mat-card-title
       >
       <mat-card-subtitle>
@@ -18,7 +20,8 @@
           Genre:
           <button color="accent" (click)="openGenre(movie.Genre)">
             {{ movie.Genre.Name }}
-          </button>
+          </button>    
+
       </mat-card-subtitle>
       <mat-card-content>
         <img
@@ -26,12 +29,13 @@
           src="{{ movie.ImagePath }}"
           width="100%"
           alt="{{ movie.Title }}"
-      /></mat-card-content>
+      />
+    </mat-card-content>
       <mat-card-actions style="text-align: center">
         <button
           mat-raised-button
           color="primary"
-          (click)="addFavorite(movie.Description)"
+          (click)="updateFavoriteMovie(movie._id)"
         >
           Add Favorite
           <mat-icon>favorite_border</mat-icon>

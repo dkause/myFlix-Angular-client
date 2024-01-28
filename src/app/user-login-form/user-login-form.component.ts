@@ -16,7 +16,7 @@ import { Router } from '@angular/router'
 export class UserLoginFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '' } // this decorator defines the components input
   constructor(
-    public fetchApiData: myFlixService,
+    public myflixService: myFlixService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router
@@ -24,7 +24,7 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {}
   // this sends form inputs to the backend
   loginUser(): void {
-    this.fetchApiData.userLogin(this.userData).subscribe(
+    this.myflixService.userLogin(this.userData).subscribe(
       (result: any) => {
         localStorage.setItem('user', JSON.stringify(result.user))
         localStorage.setItem('token', result.token)

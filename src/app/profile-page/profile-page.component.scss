@@ -3,7 +3,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 3rem;
-  margin: 0 auto ;
+  margin: 0 auto;
 }
 
 .profile {
@@ -17,4 +17,12 @@
 .favorites {
   grid-area: 1 / 2 / 2 / 3;
   width: 100%;
+}
+.form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.card-title {
+font-size: 0.8rem;
+margin: 1rem;
 }

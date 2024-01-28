@@ -10,4 +10,10 @@ The Angular Project, these points are difficult for me:
 
    Here is the api service called: 'myflix-service', [myFlixService](src/app/fetch-api-data.service.ts)
 
+   here is the api: https://github.com/dkause/myflix-API
+
 2. If you look at movie card: I use angular materials mat-grid-tile, as a layout. Inside is a matcard for the movie, the cover-image has strange behavior.
+
+---
+
+Daniel
