@@ -6,6 +6,8 @@ import { myFlixService } from '../fetch-api-data.service'
 // snackbar for display notifications
 import { MatSnackBar } from '@angular/material/snack-bar'
 
+import { Router } from '@angular/router'
+
 @Component({
   // this decorator tells angular the class below is a component and connects to follwing files
   selector: 'app-user-registration-form', // this is 'name' of the component, to be used as <app-user-re...></app-user-re...>
@@ -17,7 +19,8 @@ export class UserRegistrationFormComponent implements OnInit {
   constructor(
     public fetchApiData: myFlixService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router
   ) {}
   ngOnInit(): void {}
   // this sends form inputs to the backend
@@ -28,6 +31,11 @@ export class UserRegistrationFormComponent implements OnInit {
       this.snackBar.open(result, 'OK', {
         duration: 2000
       })
-    })
+      this.router.navigate(['movies'])
+    },
+    (error: any) => {
+      this.snackBar.open('Registration failed!', 'Close' )
+    }
+    )
   }
 }

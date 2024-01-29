@@ -4,7 +4,7 @@
     <mat-card>
       <mat-card-content>
         <p>Email: {{ user.Email }}</p>
-        <p>Birthday: {{ user.Birthday | date: 'mediumDate' }}</p>
+        <p>Birthday: {{ user.Birthday | date : 'mediumDate' }}</p>
         <!-- Fügen Sie hier weitere Benutzerinformationen hinzu, falls vorhanden -->
       </mat-card-content>
     </mat-card>
@@ -55,12 +55,15 @@
     <button mat-raised-button (click)="updateUser()" color="primary">
       Update
     </button>
+    <button mat-raised-button (click)="deleteUser()" color="warn">
+      Delete User
+    </button>
   </div>
   <div class="favorites">
     <div>
-      <h3 >Here are your favorites:</h3>
+      <h3>Here are your favorites:</h3>
       <mat-grid-list cols="4" gutterSize="2rem" rowHeight="650">
-        <mat-grid-tile *ngFor="let movie of movies">
+        <mat-grid-tile *ngFor="let movie of movies" >
           <mat-card class="mat-card">
             <mat-card-title class="card-title">
               {{ movie.Title }}

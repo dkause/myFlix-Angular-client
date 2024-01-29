@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { myFlixService } from '../fetch-api-data.service'
 import { DatePipe } from '@angular/common'
-import { HttpHeaders } from '@angular/common/http'
+import { SharedService } from '../shared-service/shared.service'
+import { Router } from '@angular/router'
 import { MatCard } from '@angular/material/card'
-
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -11,13 +11,17 @@ import { MatCard } from '@angular/material/card'
   providers: [DatePipe]
 })
 export class ProfilePageComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' } // this decorator defines the components input
+  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' }
   userId: string | null = null
   movies: any[] = []
   movie: any[] = []
   user: any = {}
 
-  constructor(public myflixService: myFlixService) {}
+  constructor(
+    public myflixService: myFlixService,
+    private sharedService: SharedService,
+    private router: Router
+  ) {}
 
   getUser(): void {
     const user = localStorage.getItem('user')
@@ -52,9 +56,45 @@ export class ProfilePageComponent implements OnInit {
       console.log('User ID is null. Cannot update user.')
     }
   }
+
+  deleteUser(): void {
+    console.log('delete', this.user.Username)
+    if (this.user.Username) {
+      const isUserSure = window.confirm(
+        'Are you sure you want to delete this user?'
+      )
+
+      if (isUserSure) {
+        // Benutzer hat "OK" ausgewählt, Benutzer löschen
+        const token = localStorage.getItem('token')
+        if (!token) {
+          console.error('no token')
+          return
+        }
+
+        this.myflixService.deleteSingleUser(this.user.Username).subscribe(
+          (result: any) => {
+            // Logik für einen erfolgreichen Benutzerlöschvorgang
+            console.log('result from myflix deleteUser', result)
+            // Navigieren Sie den Benutzer nach dem Löschen zur Anmeldeseite oder einer anderen Seite
+            this.router.navigate(['/welcome'])
+          },
+          (error) => {
+            console.error('Error deleting user', error)
+          }
+        )
+      } else {
+        console.log('User ID is null. Cannot delete user.')
+      }
+    } else {
+      // Benutzer hat "Abbrechen" ausgewählt, keine Aktion erforderlich
+      console.log('User deletion canceled.')
+    }
+  }
+
   // Remove Favorite
   removeFavorite(movieID: string): void {
-    console.log('remove Favorite:', movieID)
+    console.log('remove Favorite/profile:', movieID)
     const user = JSON.parse(localStorage.getItem('user') || '{}')
     if (user && user.Username) {
       // Check if user and Username is not null
@@ -63,11 +103,23 @@ export class ProfilePageComponent implements OnInit {
         console.error('no token')
         return
       }
+      // remove Favorite from localstorage
+      this.user.FavoriteMovies = this.user.FavoriteMovies.filter(
+        (id: string) => id !== movieID
+      )
+      localStorage.setItem('user', JSON.stringify(this.user))
+      // remove favorite via API
       this.myflixService
         .deleteUserFavoriteMovie(user.Username, movieID)
-        .subscribe((result: any) => {
-          console.log('result from myFLix', result)
-        })
+        .subscribe(
+          (result: any) => {
+            console.log('result from myFLix', result)
+          },
+          (error) => {
+            console.error('Result deleteUserFavoriteMovie', error)
+          }
+        )
+      this.getAllMovies()
     }
   }
   // Function to merge non-empty properties from source to target object
@@ -91,5 +143,8 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.getUser()
     this.getAllMovies()
+    this.sharedService.favoriteAdded$.subscribe(() => {
+      this.getAllMovies()
+    })
   }
 }

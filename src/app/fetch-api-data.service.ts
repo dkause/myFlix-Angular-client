@@ -56,16 +56,14 @@ export class myFlixService {
   }
 
   // update UserFavoriteMovie
-  updateUserFavoriteMovie(Username: any, movieId: any): Observable<any> {
+  updateUserFavoriteMovie(userData: any, movieId: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}')
 
     const token = localStorage.getItem('token')
-    console.log('User in API', user)
-    console.log('Username in fetch api', user.Username)
-    console.log('token in  api', token)
     return this.http
       .post(
-        apiUrl + 'users/' + Username + '/movies/' + movieId,
+        apiUrl + 'users/' + user.Username + '/movies/' + movieId,
+        {},
         {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -143,10 +141,10 @@ export class myFlixService {
       .pipe(map(this.extractResponseData), catchError(this.handleError))
   }
   // delete SingleUser
-  deleteSingleUser(userID: string): Observable<any> {
+  deleteSingleUser(Username: string): Observable<any> {
     const token = localStorage.getItem('token')
     return this.http
-      .delete(apiUrl + 'users/' + userID, {
+      .delete(apiUrl + 'users/' + Username, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token
         })
