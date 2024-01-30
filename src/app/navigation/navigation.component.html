@@ -1,15 +1,17 @@
-<mat-toolbar style="margin: auto;">
-  <h1><mat-icon>movies</mat-icon> myFlix</h1>
-  <span class="example-spacer"></span>
-  <div style="text-align: right; width: 100%;">
-  
-  <a routerLink="/movies" aria-label="Example icon-button with heart icon">All Movies</a>
-  <span class="example-spacer"></span>
-  <a routerLink="/profile" aria-label="Example icon-button with heart icon">
-    <mat-icon>profile</mat-icon>profile
-  </a>
-</div>
 <div>
-  <p></p>
+  <mat-toolbar>
+    <h1  mat-card-title style="margin-left: 3rem; font-size: 2rem">
+      <mat-icon>movies</mat-icon> myFlix
+    </h1>
+    <span class="example-spacer"></span>
+    <div style="text-align: right; width: 100%; margin-right: 3rem">
+      <a mat-button color="primary" routerLink="/movies" aria-label="Example icon-button with heart icon"
+        >All Movies</a
+      >
+      <span class="example-spacer"></span>
+      <a color="primary" mat-button routerLink="/profile" aria-label="Example icon-button with heart icon">
+        <mat-icon>profile</mat-icon>Profile
+      </a>
+    </div>
+  </mat-toolbar>
 </div>
-</mat-toolbar>

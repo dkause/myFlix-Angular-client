@@ -20,7 +20,6 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { LayoutModule } from '@angular/cdk/layout'
 import { MatDividerModule } from '@angular/material/divider'
-import { MAT_THEME_NAME } from '@angular/material/core'
 // myFLixComponents
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component'
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component'
@@ -78,7 +77,7 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatListModule
   ],
-  providers: [{ provide: MAT_THEME_NAME, useValue: 'deeppurple-amber'}, SharedService],
+  providers: [ SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

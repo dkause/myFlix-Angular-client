@@ -7,6 +7,7 @@ import {
 import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { map } from 'rxjs/operators'
+import { Router } from '@angular/router'
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movie-api-5rhq.onrender.com/'
@@ -16,14 +17,14 @@ const apiUrl = 'https://movie-api-5rhq.onrender.com/'
 export class myFlixService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   // * * * * * * *
   // User Endpoints
   // * * * * * * *
 
   // User Registration
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails)
+    console.log('userRegistration',userDetails)
     return this.http
       .post(apiUrl + 'users', userDetails)
       .pipe(catchError(this.handleError))
@@ -149,12 +150,19 @@ export class myFlixService {
           Authorization: 'Bearer ' + token
         })
       })
-      .pipe(map(this.extractResponseData), catchError(this.handleError))
+      .pipe(
+        map((response: any) => {
+          this.clearUserDataAndNavigate()
+          return this.extractResponseData(response)
+        }),
+        catchError(this.handleError)
+      )
+  }
+  private clearUserDataAndNavigate(): void {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
   }
 
-  //         `https://movie-api-5rhq.onrender.com/users/${user.Username}/movies/${movie._id}`,
-
-  // get UserFavoriteMovie
   getUserFavoriteMovie(userID: string, movieTitle: string): Observable<any> {
     const token = localStorage.getItem('token')
     return this.http

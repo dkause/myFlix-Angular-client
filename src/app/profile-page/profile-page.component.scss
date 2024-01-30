@@ -1,28 +1,15 @@
-.profile-layout {
+.small-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+.parent {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 3rem;
-  margin: 0 auto;
+  grid-template-rows: auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin: 1.5rem 3rem 0rem;
 }
-
-.profile {
-  grid-area: 1 / 1 / 2 / 2;
-  width: 100%;
-}
-.profile > * {
-  /* Styles for the children of .profile */
-  width: 66%;
-}
-.favorites {
-  grid-area: 1 / 2 / 2 / 3;
-  width: 100%;
-}
-.form-field {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-.card-title {
-font-size: 0.8rem;
-margin: 1rem;
+.parent >div >div{
+    float: left;
 }

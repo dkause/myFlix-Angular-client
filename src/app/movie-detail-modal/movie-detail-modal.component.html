@@ -1,6 +1,13 @@
-
-<mat-card>
-
-    <p>   {{ data.movieDetails }}
-    </p>
-</mat-card>
+<h1 mat-dialog-title>Get know your Movie</h1>
+<div mat-dialog-content>{{ data.movieDetails }}</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-stroked-button
+    aria-label="Close the genre details button"
+    mat-dialog-close
+    color="primary"
+  >
+    Close
+  </button>
+</div>

@@ -3,7 +3,6 @@ import { myFlixService } from '../fetch-api-data.service'
 import { DatePipe } from '@angular/common'
 import { SharedService } from '../shared-service/shared.service'
 import { Router } from '@angular/router'
-import { MatCard } from '@angular/material/card'
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',

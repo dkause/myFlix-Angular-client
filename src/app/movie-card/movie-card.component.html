@@ -1,49 +1,58 @@
-<mat-grid-list [cols]="cols" gutterSize="2rem" rowHeight="650">
-  <mat-grid-tile *ngFor="let movie of movies">
-    <mat-card class="mat-card">
-      <mat-card-title class="cst-mat-card-title">
-        <h2>{{ movie.Title }}</h2>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <button color="accent" (click)="openMovieDetails(movie.Description)">
-          View Description
-        </button>
-        <mat-divider class="divider"></mat-divider>
-        Director:
-        <button color="accent" (click)="openDirector(movie.Director)">
-          {{ movie.Director.Name }}
-        </button>
-        Genre:
-        <button color="accent" (click)="openGenre(movie.Genre)">
-          {{ movie.Genre.Name }}
-        </button>
-      </mat-card-subtitle>
-      <mat-card-content>
-        <img
-          mat-card-image
-          src="{{ movie.ImagePath }}"
-          width="100%"
-          alt="{{ movie.Title }}"
-        />
-      </mat-card-content>
-      <mat-card-actions style="text-align: center">
-        <button
-          *ngIf="!isFavorite(movie._id)"
-          mat-raised-button
-          color="primary"
-          (click)="addFavorite(movie._id)"
-        >
-          <mat-icon>favorite</mat-icon>Add Favorite
-        </button>
-        <button
-          *ngIf="isFavorite(movie._id)"
-          mat-raised-button
-          color="warn"
-          (click)="removeFavorite(movie._id)"
-        >
-          <mat-icon>delete</mat-icon>Remove Favorite
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+<div >
+  <mat-grid-list style="height: 960px;" [cols]="cols" gutterSize="2rem" rowHeight="2:4">
+    <mat-grid-tile *ngFor="let movie of movies">
+      <div style="width: 100%; height: 100%" mat-card>
+        <mat-card-title-group>
+
+          <mat-card-title class="card-title">
+            <h2>{{ movie.Title }}</h2>
+          </mat-card-title>
+          <mat-card-subtitle class="card-subtitle">
+            <button
+            mat-button
+            color="primary"
+            (click)="openMovieDetails(movie.Description)"
+            >
+            View Description
+          </button>
+          <mat-divider class="divider"></mat-divider>
+          <p>
+            <a mat-button (click)="openGenre(movie.Genre)">
+              {{ movie.Genre.Name }} </a
+              ><span style="vertical-align: middle;">directed by</span><a
+              mat-button
+              href="javascript:javascript:void()"
+              (click)="openDirector(movie.Director)"
+              >{{ movie.Director.Name }}</a
+              >
+            </p>
+          </mat-card-subtitle>
+          <img
+            mat-card-image-small
+            width="100%"
+            src="{{ movie.ImagePath }}"
+            alt="{{ movie.Title }}"
+          />
+        </mat-card-title-group>
+        <mat-card-actions style="text-align: center">
+          <button
+            *ngIf="!isFavorite(movie._id)"
+            mat-raised-button
+            color="primary"
+            (click)="addFavorite(movie._id)"
+          >
+            <mat-icon>favorite</mat-icon>Add Favorite
+          </button>
+          <button
+            *ngIf="isFavorite(movie._id)"
+            mat-raised-button
+            color="warn"
+            (click)="removeFavorite(movie._id)"
+          >
+            <mat-icon>delete</mat-icon>Remove Favorite
+          </button>
+        </mat-card-actions>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

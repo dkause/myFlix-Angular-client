@@ -73,21 +73,21 @@ export class MovieCardComponent implements OnInit {
 
   openGenre(genre: any): void {
     this.dialog.open(GenreModalComponent, {
-      width: '300px',
+      width: '33%',
       data: { genre: genre }
     })
   }
 
   openDirector(director: any): void {
     this.dialog.open(DirectorModalComponent, {
-      width: '300px',
+      width: '33%',
       data: { director: director }
     })
   }
 
   openMovieDetails(movieDetails: any): void {
     this.dialog.open(MovieDetailModalComponent, {
-      width: '300px',
+      width: '33%',
       data: { movieDetails: movieDetails }
     })
   }
