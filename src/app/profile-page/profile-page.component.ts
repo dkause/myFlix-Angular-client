@@ -3,6 +3,14 @@ import { myFlixService } from '../fetch-api-data.service'
 import { DatePipe } from '@angular/common'
 import { SharedService } from '../shared-service/shared.service'
 import { Router } from '@angular/router'
+import {
+  FormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms'
+import { MatFormFieldModule } from '@angular/material/form-field'
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -15,6 +23,12 @@ export class ProfilePageComponent implements OnInit {
   movies: any[] = []
   movie: any[] = []
   user: any = {}
+  email = new FormControl('', [Validators.required, Validators.email])
+  password = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+  ])
+  username = new FormControl('', [Validators.required, Validators.minLength(5)])
 
   constructor(
     public myflixService: myFlixService,
@@ -139,6 +153,22 @@ export class ProfilePageComponent implements OnInit {
     })
   }
 
+  // Error Messages
+  getErrorMessage(control: FormControl, label: string): string {
+    if (control.hasError('required')) {
+      return 'You must enter a value'
+    }
+    if (control.hasError('email')) {
+      return 'Not a valid email'
+    }
+    if (control.hasError('pattern')) {
+      return 'Not a valid pasword'
+    }
+    if (control.hasError('minlength')) {
+      return `${label} must be at least 5 characters long.`
+    }
+    return ''
+  }
   ngOnInit(): void {
     this.getUser()
     this.getAllMovies()

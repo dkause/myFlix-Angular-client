@@ -29,7 +29,12 @@
               type="text"
               name="Username"
               required
+              [formControl]="username"
+
             />
+            @if (password.invalid) {
+              <mat-error>{{ getErrorMessage(username, 'Username') }}</mat-error>
+              }
             <mat-hint> min. five characters long </mat-hint>
           </mat-form-field>
         </p>
@@ -43,7 +48,11 @@
               placeholder="Password"
               name="Password"
               required
+              [formControl]="password"
             />
+            @if (password.invalid) {
+            <mat-error>{{ getErrorMessage(password, 'Password') }}</mat-error>
+            }
           </mat-form-field>
         </p>
         <p>
@@ -51,12 +60,16 @@
             <mat-label>Change your Email</mat-label>
             <input
               matInput
+              [formControl]="email"
               [(ngModel)]="userData.Email"
               type="email"
               placeholder="no@whe.re"
               name="Email"
               required
             />
+            @if (email.invalid) {
+            <mat-error>{{ getErrorMessage(email, 'Email') }}</mat-error>
+            }
           </mat-form-field>
         </p>
         <p>
@@ -94,7 +107,11 @@
           src="{{ movie.ImagePath }}"
           alt="{{ movie.Title }}"
         />
-        <button mat-flat-button color="warn" (click)="removeFavorite(movie._id)">
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="removeFavorite(movie._id)"
+        >
           Remove
         </button>
       </div>

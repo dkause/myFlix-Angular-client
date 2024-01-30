@@ -1,7 +1,7 @@
 <div >
   <mat-grid-list style="height: 960px;" [cols]="cols" gutterSize="2rem" rowHeight="2:4">
     <mat-grid-tile *ngFor="let movie of movies">
-      <div style="width: 100%; height: 100%" mat-card>
+      <div style="width: 90%; height: 100%" mat-card>
         <mat-card-title-group>
 
           <mat-card-title class="card-title">
@@ -16,10 +16,11 @@
             View Description
           </button>
           <mat-divider class="divider"></mat-divider>
-          <p>
-            <a mat-button (click)="openGenre(movie.Genre)">
+          <p class="genre-director">
+            <a color="primary" mat-button (click)="openGenre(movie.Genre)">
               {{ movie.Genre.Name }} </a
               ><span style="vertical-align: middle;">directed by</span><a
+              color="primary"
               mat-button
               href="javascript:javascript:void()"
               (click)="openDirector(movie.Director)"
@@ -53,6 +54,7 @@
           </button>
         </mat-card-actions>
       </div>
+      <mat-divider></mat-divider>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
