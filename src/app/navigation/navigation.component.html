@@ -1,11 +1,11 @@
 <div>
   <mat-toolbar>
     <h1 mat-card-title style="margin-left: 3rem; font-size: 2rem">
-      <mat-icon>movies</mat-icon> myFlix
+      <mat-icon>movies</mat-icon> myFlix {{ isLoggedIn}}
     </h1>
     <span class="example-spacer"></span>
     <div style="text-align: right; width: 100%; margin-right: 3rem">
-      <a
+      <a *ngIf="isLoggedIn"
         mat-button
         color="primary"
         routerLink="/movies"
@@ -14,7 +14,7 @@
       >
 
       <span class="example-spacer"></span>
-      <a
+      <a *ngIf="isLoggedIn"
         mat-button
         color="primary"
         routerLink="/profile"
@@ -24,7 +24,7 @@
 
       <span class="example-spacer"></span>
       
-      <a
+      <a *ngIf="isLoggedIn"
         color="primary"
         mat-button
         routerLink="/profile"

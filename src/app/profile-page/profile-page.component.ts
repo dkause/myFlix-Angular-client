@@ -60,6 +60,8 @@ export class ProfilePageComponent implements OnInit {
         (result: any) => {
           // Logic for a successful user update
           console.log('result from myflix updateuser', result)
+          localStorage.setItem('user', JSON.stringify(updatedUser))
+          this.user = updatedUser
         },
         (error) => {
           console.error('Error updating user', error)
@@ -71,21 +73,22 @@ export class ProfilePageComponent implements OnInit {
   }
 
   deleteUser(): void {
-    console.log('delete', this.user.Username)
-    if (this.user.Username) {
+    console.log('delete', this.userId)
+    if (this.userId) {
       const isUserSure = window.confirm(
         'Are you sure you want to delete this user?'
       )
 
       if (isUserSure) {
-        // Benutzer hat "OK" ausgewählt, Benutzer löschen
         const token = localStorage.getItem('token')
         if (!token) {
           console.error('no token')
           return
         }
+        const updatedUsername = this.userId; // Save the updated username
+        console.log(updatedUsername)
 
-        this.myflixService.deleteSingleUser(this.user.Username).subscribe(
+        this.myflixService.deleteSingleUser(this.user.updatedUsername).subscribe(
           (result: any) => {
             // Logik für einen erfolgreichen Benutzerlöschvorgang
             console.log('result from myflix deleteUser', result)

@@ -80,14 +80,12 @@ export class MovieCardComponent implements OnInit {
 
   openDirector(director: any): void {
     this.dialog.open(DirectorModalComponent, {
-      width: '33%',
       data: { director: director }
     })
   }
 
   openMovieDetails(movieDetails: any): void {
     this.dialog.open(MovieDetailModalComponent, {
-      width: '33%',
       data: { movieDetails: movieDetails }
     })
   }

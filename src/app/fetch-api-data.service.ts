@@ -142,10 +142,10 @@ export class myFlixService {
       .pipe(map(this.extractResponseData), catchError(this.handleError))
   }
   // delete SingleUser
-  deleteSingleUser(Username: string): Observable<any> {
+  deleteSingleUser(username: string): Observable<any> {
     const token = localStorage.getItem('token')
     return this.http
-      .delete(apiUrl + 'users/' + Username, {
+      .delete(apiUrl + 'users/' + username, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token
         })
