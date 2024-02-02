@@ -1,5 +1,56 @@
-<app-navigation>Get the shit</app-navigation>
+<div style="height: 80vh">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        fxShow="true"
+        fxHide.gt-sm
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>my Flix Angular</span>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <a
+          href="#"
+          mat-button
+          routerLink="/movies"
+          aria-label="link to all movies"
+          >All Movies</a
+        >
+        <a mat-button routerLink="/profile" aria-label="link to Profile Page"
+          >Favorites</a
+        >
+        <a mat-button routerLink="/profile" aria-label="Link to profile">
+          Profile
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-<main style="margin: 1rem 3rem">
-  <router-outlet></router-outlet>
-</main>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        <a
+          href="#"
+          mat-list-item
+          routerLink="/movies"
+          aria-label="link to all movies"
+          >All Movies</a
+        >
+        <a mat-list-item routerLink="/profile" aria-label="link to Profile Page"
+          >Favorites</a
+        >
+        <a mat-list-item routerLink="/profile" aria-label="Link to profile">
+          Profile
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
