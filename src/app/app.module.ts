@@ -25,7 +25,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { NavigationComponent } from './navigation/navigation.component'
 import { ReactiveFormsModule } from '@angular/forms'
-
+import { FlexLayoutModule } from '@angular/flex-layout'
 // myFLixComponents
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component'
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component'
