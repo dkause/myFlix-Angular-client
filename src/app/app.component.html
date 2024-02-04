@@ -1,5 +1,5 @@
 <div style="height: 80vh">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" *ngIf="isLoggedIn">
     <mat-toolbar-row>
       <button
         mat-icon-button
@@ -20,7 +20,7 @@
           aria-label="link to all movies"
           >All Movies</a
         >
-        <a mat-button routerLink="/profile" aria-label="link to Profile Page"
+        <a mat-button routerLink="/favorites" aria-label="link to Favorites"
           >Favorites</a
         >
         <a mat-button routerLink="/profile" aria-label="Link to profile">
@@ -41,7 +41,7 @@
           aria-label="link to all movies"
           >All Movies</a
         >
-        <a mat-list-item routerLink="/profile" aria-label="link to Profile Page"
+        <a mat-list-item routerLink="/favorites" aria-label="link to Favorites"
           >Favorites</a
         >
         <a mat-list-item routerLink="/profile" aria-label="Link to profile">

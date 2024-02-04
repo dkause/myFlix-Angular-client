@@ -3,13 +3,7 @@ import { myFlixService } from '../fetch-api-data.service'
 import { DatePipe } from '@angular/common'
 import { SharedService } from '../shared-service/shared.service'
 import { Router } from '@angular/router'
-import {
-  FormControl,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule
-} from '@angular/forms'
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-profile-page',
@@ -85,20 +79,22 @@ export class ProfilePageComponent implements OnInit {
           console.error('no token')
           return
         }
-        const updatedUsername = this.userId; // Save the updated username
+        const updatedUsername = this.userId // Save the updated username
         console.log(updatedUsername)
 
-        this.myflixService.deleteSingleUser(this.user.updatedUsername).subscribe(
-          (result: any) => {
-            // Logik für einen erfolgreichen Benutzerlöschvorgang
-            console.log('result from myflix deleteUser', result)
-            // Navigieren Sie den Benutzer nach dem Löschen zur Anmeldeseite oder einer anderen Seite
-            this.router.navigate(['/welcome'])
-          },
-          (error) => {
-            console.error('Error deleting user', error)
-          }
-        )
+        this.myflixService
+          .deleteSingleUser(this.user.updatedUsername)
+          .subscribe(
+            (result: any) => {
+              // Logik für einen erfolgreichen Benutzerlöschvorgang
+              console.log('result from myflix deleteUser', result)
+              // Navigieren Sie den Benutzer nach dem Löschen zur Anmeldeseite oder einer anderen Seite
+              this.router.navigate(['/welcome'])
+            },
+            (error) => {
+              console.error('Error deleting user', error)
+            }
+          )
       } else {
         console.log('User ID is null. Cannot delete user.')
       }

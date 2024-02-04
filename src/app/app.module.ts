@@ -34,7 +34,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component'
 import { GenreModalComponent } from './genre-modal/genre-modal.component'
 import { DirectorModalComponent } from './director-modal/director-modal.component'
 import { MovieDetailModalComponent } from './movie-detail-modal/movie-detail-modal.component'
-import { ProfilePageComponent } from './profile-page/profile-page.component'
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { FavoritesPageComponent } from './favorites-page/favorites-page.component'
 
 
 // Defining the routes
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'favorites', component: FavoritesPageComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
 ]
 
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     DirectorModalComponent,
     MovieDetailModalComponent,
     ProfilePageComponent,
-    NavigationComponent
+    NavigationComponent,
+    FavoritesPageComponent
   ],
   imports: [
     ReactiveFormsModule,

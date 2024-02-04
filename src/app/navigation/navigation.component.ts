@@ -9,7 +9,6 @@ import { SharedService } from '../shared-service/shared.service'
 export class NavigationComponent implements OnInit {
   isLoggedIn: boolean = false // You should set this value based on your authentication logic
 
-  apiStatus: string = 'Loading...' // Initial status
 
   constructor(private sharedService: SharedService) {}
 
