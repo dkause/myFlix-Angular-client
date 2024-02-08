@@ -14,6 +14,7 @@ import { SharedService } from '../shared-service/shared.service'
 })
 export class MovieCardComponent implements OnInit {
   Username: string | null = null
+  isLoggedIn: boolean = false
   movies: any[] = []
   user: any = {}
   cols = '3'
@@ -51,6 +52,7 @@ export class MovieCardComponent implements OnInit {
   ngOnInit(): void {
     this.getMovies()
     this.getUser()
+    
   }
 
   getMovies(): void {
@@ -64,6 +66,10 @@ export class MovieCardComponent implements OnInit {
     if (user) {
       this.user = JSON.parse(user)
       this.Username = this.user.Username
+      this.isLoggedIn = true
+    } else {
+      this.isLoggedIn = false
+      
     }
   }
 

@@ -1,13 +1,19 @@
 // shared.service.ts
 import { Injectable } from '@angular/core'
-import { Subject, Observable } from 'rxjs'
+import { Subject, Observable, BehaviorSubject } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
   private favoriteAddedSource = new Subject<void>()
-  private isLoggedIn: boolean = false
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false)
+
+  // Observable for UserStatus
+  isLoggedIn$ = this.isLoggedInSubject.asObservable()
+  constructor() {
+    this.checkUserLoggedInStatus()
+  }
 
   // Observable to subscribe to favorite added events
   favoriteAdded$ = this.favoriteAddedSource.asObservable()
@@ -17,18 +23,14 @@ export class SharedService {
     this.favoriteAddedSource.next()
   }
   // Method to check if the user is logged in
-  isUserLoggedIn(): boolean {
-    const userString = localStorage.getItem('user')
-    const isLoggedIn =
-      userString !== null &&
-      userString !== undefined &&
-      userString.trim() !== ''
-    console.log('isUserLoggedIn called. Returning:', isLoggedIn)
-    return isLoggedIn
+  private checkUserLoggedInStatus(): void {
+    const userString = localStorage.getItem('user');
+    const isLoggedIn = userString !== null && userString.trim() !== '';
+    this.isLoggedInSubject.next(isLoggedIn);
   }
 
-  // Method to set the user's login status
+  // Method to set the user's status as loggedin
   setUserLoggedInStatus(status: boolean): void {
-    this.isLoggedIn = status
+    this.isLoggedInSubject.next(status);
   }
 }

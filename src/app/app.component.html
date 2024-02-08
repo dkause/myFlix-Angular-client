@@ -26,6 +26,9 @@
         <a mat-button routerLink="/profile" aria-label="Link to profile">
           Profile
         </a>
+        <a mat-button (click)="logout()" aria-label="logout">
+          Logout
+        </a>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -46,6 +49,9 @@
         >
         <a mat-list-item routerLink="/profile" aria-label="Link to profile">
           Profile
+        </a>
+        <a mat-list-item (click)="logout()" aria-label="logout">
+          Logout
         </a>
       </mat-nav-list>
     </mat-sidenav>

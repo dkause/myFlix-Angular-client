@@ -23,7 +23,6 @@ import { MatDividerModule } from '@angular/material/divider'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
-import { NavigationComponent } from './navigation/navigation.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout'
 // myFLixComponents
@@ -58,10 +57,10 @@ const appRoutes: Routes = [
     DirectorModalComponent,
     MovieDetailModalComponent,
     ProfilePageComponent,
-    NavigationComponent,
     FavoritesPageComponent
   ],
   imports: [
+    FlexLayoutModule,
     ReactiveFormsModule,
     MatDividerModule,
     LayoutModule,

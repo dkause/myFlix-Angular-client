@@ -1,137 +1,82 @@
-<div class="wrap">
-  <section class="layout">
-      <div mat-card class="profile-card">
-        <mat-card-title-group>
-          <mat-card-title>
-            <h2 style="height: 1.5 rem">
-              <mat-icon style="vertical-align: middle">account_circle</mat-icon>
-              {{ user.Username }}'s Profile
-            </h2></mat-card-title
-          >
-          <mat-card-subtitle>
-            <p>
-              Your Name is: <strong>{{ user.Username }}</strong
-              >, your Email: <strong>{{ user.Email }}</strong> and Birthday:
-              <strong>{{ user.Birthday | date : 'mediumDate' }}</strong>
-            </p>
-            <p>Fields with "*" are mandatory.</p>
-            <h3>Edit profile here:</h3>
-          </mat-card-subtitle>
-        </mat-card-title-group>
-        <mat-card-content class="form-groug">
-          <p>
-            <mat-form-field class="form-field">
-              <mat-label>Change Username</mat-label>
-              <input
-                matInput
-                [(ngModel)]="userData.Username"
-                placeholder="Username"
-                type="text"
-                name="Username"
-                required
-                [formControl]="username"
-              />
-              @if (password.invalid) {
-              <mat-error>{{ getErrorMessage(username, 'Username') }}</mat-error>
-              }
-              <mat-hint> min. five characters long </mat-hint>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field class="form-field">
-              <mat-label>Change Password</mat-label>
-              <input
-                matInput
-                [(ngModel)]="userData.Password"
-                type="password"
-                placeholder="Password"
-                name="Password"
-                required
-                [formControl]="password"
-              />
-              @if (password.invalid) {
-              <mat-error>{{ getErrorMessage(password, 'Password') }}</mat-error>
-              }
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <mat-label>Change your Email</mat-label>
-              <input
-                matInput
-                [formControl]="email"
-                [(ngModel)]="userData.Email"
-                type="email"
-                placeholder="no@whe.re"
-                name="Email"
-                required
-              />
-              @if (email.invalid) {
-              <mat-error>{{ getErrorMessage(email, 'Email') }}</mat-error>
-              }
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field class="form-field">
-              <mat-label>Set your Birthday</mat-label>
-              <input
-                matInput
-                [(ngModel)]="userData.Birthday"
-                type="date"
-                placeholder="07.07.1977"
-                name="Birthday"
-              />
-            </mat-form-field>
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button (click)="updateUser()" color="primary">
-            Update
-          </button>
-          <button mat-button (click)="deleteUser()" color="warn">
-            Delete User
-          </button>
-        </mat-card-actions>
-      </div>
-    <div>
-      <div>
-        <div>
-          <h2>Here are your favorites:</h2>
-        </div>
-        <div class="favorites-list">
-          <div class="favorites-item" *ngFor="let movie of movies">
-            <mat-card>
-              <mat-card-header>
-                <mat-card-title class="favories-title">
-                  {{ movie.Title }}
-                </mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                <div style="display: flex; flex-direction: row">
-                  <div>
-                    <img
-                      mat-card-sm-image
-                      src="{{ movie.ImagePath }}"
-                      alt="{{ movie.Title }}"
-                    />
-                  </div>
-                  <div>
-                    <mat-card-actions>
-                      <button
-                        mat-flat-button
-                        color="warn"
-                        (click)="removeFavorite(movie._id)"
-                      >
-                        Remove
-                      </button>
-                    </mat-card-actions>
-                  </div>
-                </div>
-              </mat-card-content>
-            </mat-card>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+<section class="profile-card">
+  <mat-card class="exampe-card">
+      <mat-card-title> Edit your profile here </mat-card-title>
+      <mat-card-subtitle> Fields with "*" are mandatory. </mat-card-subtitle>
+    <mat-card-content>
+      {{ user.Username }}'s current profile. Your Name is:
+      <strong>{{ user.Username }}</strong
+      >, your Email: <strong>{{ user.Email }}</strong> and Birthday:
+      <strong>{{ user.Birthday | date : 'mediumDate' }}</strong>
+      <p>
+        <mat-form-field>
+          <mat-label>Change Username</mat-label>
+          <input
+            matInput
+            [(ngModel)]="userData.Username"
+            placeholder="Username"
+            type="text"
+            name="Username"
+            required
+            [formControl]="username"
+          />
+          @if (password.invalid) {
+          <mat-error>{{ getErrorMessage(username, 'Username') }}</mat-error>
+          }
+          <mat-hint> min. five characters long </mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Change Password</mat-label>
+          <input
+            matInput
+            [(ngModel)]="userData.Password"
+            type="password"
+            placeholder="Password"
+            name="Password"
+            required
+            [formControl]="password"
+          />
+          @if (password.invalid) {
+          <mat-error>{{ getErrorMessage(password, 'Password') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Change your Email</mat-label>
+          <input
+            matInput
+            [formControl]="email"
+            [(ngModel)]="userData.Email"
+            type="email"
+            placeholder="no@whe.re"
+            name="Email"
+            required
+          />
+          @if (email.invalid) {
+          <mat-error>{{ getErrorMessage(email, 'Email') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Set your Birthday</mat-label>
+          <input
+            matInput
+            [(ngModel)]="userData.Birthday"
+            type="date"
+            placeholder="07.07.1977"
+            name="Birthday"
+          />
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="updateUser()" color="primary">Update</button>
+      <button mat-button (click)="deleteUser()" color="warn">
+        Delete User
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>
