@@ -10,20 +10,17 @@ import { Router } from '@angular/router' // Remove the extra closing curly brace
 export class AppComponent implements OnInit {
   title = 'myFlix-Angular-client'
   isLoggedIn: boolean = false
-  constructor(
-    private sharedService: SharedService,
-    private router: Router,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private sharedService: SharedService, private router: Router) {}
   logout(): void {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
+    this.sharedService.setUserLoggedInStatus(false)
+
     this.router.navigate(['/welcome'])
   }
   ngOnInit(): void {
     this.sharedService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn
-      this.cdr.detectChanges()
       console.log('isLoggedIn app - user is logged in', this.isLoggedIn)
     })
   }

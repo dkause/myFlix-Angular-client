@@ -4,9 +4,10 @@ import { MatDialogRef } from '@angular/material/dialog'
 // fetch api calls
 import { myFlixService } from '../fetch-api-data.service'
 // snackbar for display notifications
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 import { Router } from '@angular/router'
+import { SharedService } from '../shared-service/shared.service'
 
 @Component({
   selector: 'app-user-login-form',
@@ -19,7 +20,8 @@ export class UserLoginFormComponent implements OnInit {
     public myflixService: myFlixService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
   ngOnInit(): void {}
   // this sends form inputs to the backend
@@ -29,9 +31,9 @@ export class UserLoginFormComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(result.user))
         localStorage.setItem('token', result.token)
 
-        // here will be the logic for a successful user registration
+        this.sharedService.setUserLoggedInStatus(true)
 
-        this.dialogRef.close() // this will close the modal on success
+        this.dialogRef.close() 
         this.snackBar.open('Welcome to myFlix', 'OK', {
           duration: 2000
         })
@@ -39,7 +41,6 @@ export class UserLoginFormComponent implements OnInit {
       },
       (error: any) => {
         this.snackBar.open('Login failed!', 'CLOSE', {
-          // duration: 3500
         })
       }
     )
