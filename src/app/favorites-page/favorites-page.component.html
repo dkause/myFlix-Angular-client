@@ -1,8 +1,10 @@
 <div>
-  <p>
-    You need to add favorite Movies from
-    <a routerLink="/movies" href="#">movies</a>
-  </p>
+  <mat-card *ngIf="movies.length === 0">
+    <mat-card-content>
+      You need to add favorite Movies from
+      <a routerLink="/movies" href="#">movies</a>!
+    </mat-card-content>
+  </mat-card>
   <mat-grid-list
     style="height: 960px"
     [cols]="cols"

@@ -6,7 +6,6 @@ import { myFlixService } from '../fetch-api-data.service'
 import { MatDialog } from '@angular/material/dialog'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { SharedService } from '../shared-service/shared.service'
-import { filter } from 'rxjs'
 
 @Component({
   selector: 'app-favorites-page',

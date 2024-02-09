@@ -102,22 +102,24 @@ export class MovieCardComponent implements OnInit {
       try {
         const user = JSON.parse(userString)
         console.log('Parsed user object:', user)
-
+        
         this.user = user
         this.Username = user.Username
         this.user.FavoriteMovies.push(movieId)
-
+        
         localStorage.setItem('user', JSON.stringify(this.user))
+        console.log('new local storage user object:', user)
 
         const isFavorite = this.user.FavoriteMovies.includes(movieId)
-
-        if (!isFavorite) {
+        
+        if (isFavorite) {
           this.myflixService
-            .updateUserFavoriteMovie(this.Username, movieId)
-            .subscribe(
-              (result: any) => {
-                console.log('result', result)
-              },
+          .updateUserFavoriteMovie(this.Username, movieId)
+          .subscribe(
+            (result: any) => {
+              console.log('result', result)
+              console.log('update Favorite Api Call')
+            },
               (error) => {
                 console.error('Error updating user favorite movie', error)
               }
