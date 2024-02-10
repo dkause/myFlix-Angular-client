@@ -1,13 +1,8 @@
-import { Injectable } from '@angular/core'
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse
-} from '@angular/common/http'
-import { Observable, throwError } from 'rxjs'
-import { catchError } from 'rxjs/operators'
-import { map } from 'rxjs/operators'
-import { Router } from '@angular/router'
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators'; // Import tap here
+import { Router } from '@angular/router';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movie-api-5rhq.onrender.com/'
@@ -18,9 +13,6 @@ export class myFlixService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient, private router: Router) {}
-  // * * * * * * *
-  // User Endpoints
-  // * * * * * * *
 
   // User Registration
   public userRegistration(userDetails: any): Observable<any> {
@@ -142,28 +134,18 @@ export class myFlixService {
       .pipe(map(this.extractResponseData), catchError(this.handleError))
   }
   // delete SingleUser
-  deleteSingleUser(username: string, userID: string): Observable<any> {
-    console.log('what does deleteSingleUser recieve?', username, userID)
-    const token = localStorage.getItem('token')
-    return this.http
-      .delete(apiUrl + 'users/' + username + '/' + userID, {
+    deleteSingleUser(username: string, userID: string): Observable<any> {
+      const token = localStorage.getItem('token');
+      return this.http.delete(apiUrl + 'users/' + username + '/' + userID, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token
-        })
-      })
-      .pipe(
-        map((response: any) => {
-          this.clearUserDataAndNavigate()
-          return this.extractResponseData(response)
+          'Authorization': `Bearer ${token}`
         }),
+        responseType: 'text' // Expect a text response
+      }).pipe(
+        tap(response => console.log('deleteSingleUser response:', response)),
         catchError(this.handleError)
-      )
-  }
-  private clearUserDataAndNavigate(): void {
-    localStorage.removeItem('user')
-    localStorage.removeItem('token')
-
-  }
+      );
+    }
 
   getUserFavoriteMovie(userID: string, movieTitle: string): Observable<any> {
     const token = localStorage.getItem('token')
@@ -180,22 +162,33 @@ export class myFlixService {
       )
   }
 
+  private clearUserDataAndNavigate(): void {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+
+  }
+
   // Non-typed response extraction
   private extractResponseData(res: any): any {
     const body = res
     return body || {}
   }
 
-  private handleError(error: any): any {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred:', error.error.message)
+      console.error('An error occurred:', error.error.message);
     } else {
-      console.error(
-        `myFlixService Error Status code ${error.status}, ` +
-          ` Error Status code ${error.status}, ` +
-          `Error body is: ${JSON.stringify(error.error)}`
-      )
+      if (error.status >= 200 && error.status < 300) {
+        console.log(`Backend returned code ${error.status}, body was:`, error.error);
+      } else {
+        console.error(
+          `Backend returned code ${error.status}, body was:`, error.error);
+        // Return an observable with a user-facing error message.
+        return throwError(() => new Error('Something bad happened; please try again later.'));
+      }
     }
-    return throwError('Something bad happened; please try again later.')
+    return throwError(() => new Error('No error.'));
   }
+  
+  
 }
