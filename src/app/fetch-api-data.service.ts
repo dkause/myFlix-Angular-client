@@ -142,10 +142,11 @@ export class myFlixService {
       .pipe(map(this.extractResponseData), catchError(this.handleError))
   }
   // delete SingleUser
-  deleteSingleUser(username: string): Observable<any> {
+  deleteSingleUser(username: string, userID: string): Observable<any> {
+    console.log('what does deleteSingleUser recieve?', username, userID)
     const token = localStorage.getItem('token')
     return this.http
-      .delete(apiUrl + 'users/' + username, {
+      .delete(apiUrl + 'users/' + username + '/' + userID, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token
         })
@@ -161,6 +162,7 @@ export class myFlixService {
   private clearUserDataAndNavigate(): void {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
+
   }
 
   getUserFavoriteMovie(userID: string, movieTitle: string): Observable<any> {

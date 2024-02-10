@@ -63,6 +63,7 @@ export class ProfilePageComponent implements OnInit {
 
   deleteUser(): void {
     console.log('delete', this.userId);
+    console.log('user', this.user.Username);
     if (this.userId) {
       const isUserSure = window.confirm('Are you sure you want to delete this user?');
 
@@ -73,9 +74,9 @@ export class ProfilePageComponent implements OnInit {
           return;
         }
         const updatedUsername = this.userId;
-        console.log(updatedUsername);
+        console.log('updatedUsername',updatedUsername);
 
-        this.myflixService.deleteSingleUser(this.user.updatedUsername).subscribe(
+        this.myflixService.deleteSingleUser(this.user.Username, this.userId).subscribe(
           (result: any) => {
             console.log('result from myflix deleteUser', result);
             this.router.navigate(['/welcome']);

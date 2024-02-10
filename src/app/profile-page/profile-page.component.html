@@ -1,11 +1,15 @@
 <section class="profile-card">
   <mat-card class="example-card">
+    <mat-card-header>
       <mat-card-title> Edit your profile here </mat-card-title>
       <mat-card-subtitle> Fields with "*" are mandatory. </mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
-      {{ user.Username }}'s current profile. Your Name is:
-      <strong>{{ user.Username }}</strong
-      >, your Email: <strong>{{ user.Email }}</strong> and Birthday:
+      This is <strong>{{ user.Username }}'s</strong> current profile.<br />
+      Your Name is: <strong>{{ user.Username }}</strong
+      >,<br />
+      your Email: <strong>{{ user.Email }}</strong><br>And your Birthday if
+      provided:
       <strong>{{ user.Birthday | date : 'mediumDate' }}</strong>
       <p>
         <mat-form-field>
