@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing'
 
-import { FetchApiDataService } from './fetch-api-data.service';
+import { myFlixService } from './fetch-api-data.service'
 
-describe('FetchApiDataService', () => {
-  let service: FetchApiDataService;
+describe('myFlixService', () => {
+  let service: myFlixService
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FetchApiDataService);
-  });
+    TestBed.configureTestingModule({})
+    service = TestBed.inject(myFlixService)
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})
