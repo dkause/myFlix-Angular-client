@@ -11,6 +11,11 @@ export class AppComponent implements OnInit {
   title = 'myFlix-Angular-client'
   isLoggedIn: boolean = false
   constructor(private sharedService: SharedService, private router: Router) {}
+  /**
+   * Logs out the user by removing user and token data from local storage.
+   * Sets the user logged-in status to false and navigates to welcome page.
+   *  @returns void
+   */
   logout(): void {
     localStorage.removeItem('user')
     localStorage.removeItem('token')

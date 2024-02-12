@@ -14,8 +14,19 @@ import { Router } from '@angular/router'
   templateUrl: './user-registration-form.component.html',
   styleUrl: './user-registration-form.component.scss'
 })
+/**
+ * Represents the User Registration component of the application.
+ * Provides functionality for registration of a user
+ */
 export class UserRegistrationFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' } // this decorator defines the components input
+  /**
+   * Constructs a user registration component and sends the input data to the API.
+   * @param fetchApiData - The service handling API requests
+   * @param dialogRef - Reference to MatDialog for managing the dialog
+   * @param snackBar - Service for user notifications
+   * @param router - Router service for navigation.
+   */
   constructor(
     public fetchApiData: myFlixService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
@@ -23,7 +34,11 @@ export class UserRegistrationFormComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {}
-  // this sends form inputs to the backend
+  /**
+   * Sends user registration data to the backend.
+   * If sucessful, closes the dialog, displays a sucess message and navigates to movie page.
+   * If unsucessful, an error message is displayed.
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result: any) => {
